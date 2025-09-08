@@ -1,8 +1,7 @@
 from google.adk import Agent
 from tools.authenticaiton import authenticate_user
 
-def subscription_agent():
-    return Agent(
+subscription_agent = Agent(
         name="subscription_agent",
         model="gemini-2.0-flash",
         description="An agent that handles subscription inquiries and management for users.",

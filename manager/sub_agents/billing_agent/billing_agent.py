@@ -2,8 +2,7 @@ from google.adk import Agent
 from tools.authenticaiton import authenticate_user
 
 
-def billing_agent():
-    return Agent(
+billing_agent = Agent(
         name="billing_agent",
         model="gemini-2.0-flash",
         description="An agent that handles billing inquiries and payments for users.",

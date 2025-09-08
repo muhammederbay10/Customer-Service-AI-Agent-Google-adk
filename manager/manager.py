@@ -1,15 +1,14 @@
-from google.adk.agents import Agent
+from google.adk import Agent
 import os 
 import sys
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from sub_agents.billing_agent import billing_agent
-from sub_agents.subscription_agent import subscription_agent
+from sub_agents.billing_agent.billing_agent import billing_agent
+from sub_agents.subscription_agent.subscription_agent import subscription_agent
 
-def general_agent():
-    return Agent(
-        name="general_agent",
+general_agent = Agent(
+        name="manager",
         model="gemini-2.0-flash",
         description="A general customer service agent that can handle a variety of customer inquiries and direct them to specialized agents as needed.",
         instructions="""
@@ -19,7 +18,5 @@ def general_agent():
         3. If the inquiry is related to subscriptions, transfer the request to the subscription_agent.
         4. If the inquiry is unrelated, provide a generic response or ask for clarification.
     """,
-    sub_agents=[billing_agent(), subscription_agent()],
-        max_iterations=5,
-        max_execution_time=600,
+    sub_agents=[billing_agent, subscription_agent],
     )
